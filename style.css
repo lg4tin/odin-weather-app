@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  background-color: rgb(117, 117, 218);
+  background-image: url('sun-clouds-2-1317115.jpg');
+  object-fit: scale-down;
 }
 
 header {
@@ -49,7 +50,9 @@ input[type='submit'] {
   text-align: center;
   background-color: rgb(127, 247, 207);
   width: 300px;
-  border-radius: 25px;
+  border-radius: 50px;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+  box-shadow: 5px 5px 15px 5px #000000;
 }
 
 #content div {

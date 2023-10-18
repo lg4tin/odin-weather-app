@@ -9,11 +9,15 @@ async function getWeather(city) {
     
     const weatherData = await response.json();
     const data = Object.entries(weatherData.current);
+    const locationData = Object.entries(weatherData.location);
 
     let newArray = siftData(data);
     const dataWeNeed = newArray.map(i => i[1]);
 
-    displayWeather(dataWeNeed[1], dataWeNeed[0], dataWeNeed[2], dataWeNeed[3], dataWeNeed[4]);
+    let locationArray = siftData2(locationData);
+    const locationDataWeNeed = locationArray.map(i => i[1]);
+
+    displayWeather(dataWeNeed[1], dataWeNeed[0], dataWeNeed[2], dataWeNeed[3], dataWeNeed[4], locationDataWeNeed[0], locationDataWeNeed[1]);
 
     switchTemp(dataWeNeed[1])
   
@@ -28,16 +32,22 @@ function siftData(obj) {
   return filteredObj;
 }
 
+function siftData2(obj) {
+  let filteredArray = obj.filter(data => data[0] === 'name' || data[0] == 'region');
+  return filteredArray;
+}
+
+getWeather('Tampa')
 
 //VIEW 
 
 const content = document.querySelector('#content');
 
-function displayWeather(a,b,c,d,f) {
+function displayWeather(a,b,c,d,e,f,g) {
   content.innerHTML = '';
 
   let header = document.createElement('h1');
-  header.textContent = input.value;
+  header.textContent = `${f}, ${g}`;
 
   let div = document.createElement('div');
   div.classList.add('box');
@@ -59,7 +69,7 @@ function displayWeather(a,b,c,d,f) {
   div.appendChild(humidity);
 
   let wind = document.createElement('div');
-  wind.textContent = `Feels like (F): ${f}`;
+  wind.textContent = `Feels like (F): ${e}`;
   div.appendChild(wind);
 
   content.appendChild(header)
@@ -80,11 +90,14 @@ function switchTemp(temp) {
   if(temp > 60) {
     img.src = 'weather-sunny.svg'
     content.style.backgroundColor = 'orange';
+    document.body.style = `background-image: url('sun-clouds-2-1317115.jpg');`;
   } else if(temp <= 59 && temp >= 40) {
     img.src = 'sun-snowflake-variant.svg'
     content.style.backgroundColor = 'yellow';
+    document.body.style = `background-image: url('bryan-rodriguez-BckdUV5HFlc-unsplash.jpg');`;
   } else {
     img.src = 'snowflake-alert.svg';
     content.style.backgroundColor = 'lightblue';
+    document.body.style = `background-image: url('bryan-rodriguez-BckdUV5HFlc-unsplash.jpg');`;
   }
 }
