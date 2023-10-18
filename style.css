@@ -24,6 +24,8 @@ input {
 input[type='submit'] {
   background-color: #64a1e6;
   border-radius: 15px;
+  color: white;
+  font-weight: bold;
 }
 
 .form {
@@ -31,4 +33,9 @@ input[type='submit'] {
   display: flex;
   justify-content: center;
   gap: 40px;
+}
+
+#content {
+  margin-top: 100px;
+  text-align: center;
 }
