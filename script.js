@@ -11,10 +11,11 @@ async function getWeather(city) {
     const data = Object.entries(weatherData.current);
 
     let newArray = siftData(data);
+    const dataWeNeed = newArray.map(i => i[1]);
 
-    content.textContent = newArray
+    displayWeather(dataWeNeed[0], dataWeNeed[1], dataWeNeed[2], dataWeNeed[3], dataWeNeed[4])
   
-    return newArray;
+    return dataWeNeed;
   } catch(err) {
     content.textContent = 'Incorrect City';
   }
@@ -31,10 +32,39 @@ function siftData(obj) {
 //VIEW 
 
 const content = document.querySelector('#content');
-content.textContent = 'hi'
 
+function displayWeather(a,b,c,d,f) {
+  content.innerHTML = '';
 
+  let header = document.createElement('h1');
+  header.textContent = input.value;
 
+  let div = document.createElement('div');
+  div.classList.add('box');
+
+  let tempF = document.createElement('div');
+  tempF.textContent = `The temperature in F is: ${a}`;
+  div.appendChild(tempF);
+
+  let tempC = document.createElement('div');
+  tempC.textContent = `The temperature in C is: ${b}`;
+  div.appendChild(tempC);
+
+  let feelsLike = document.createElement('div');
+  feelsLike.textContent = `Feels like ${c}`;
+  div.appendChild(feelsLike);
+
+  let humidity = document.createElement('div');
+  humidity.textContent = `Feels like ${d}`;
+  div.appendChild(humidity);
+
+  let wind = document.createElement('div');
+  wind.textContent = `Feels like ${f}`;
+  div.appendChild(wind);
+
+  content.appendChild(header)
+  content.appendChild(div);
+}
 
 //CONTROLLER
 
