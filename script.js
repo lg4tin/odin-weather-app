@@ -13,15 +13,15 @@ async function getWeather(city) {
     let newArray = siftData(data);
     const dataWeNeed = newArray.map(i => i[1]);
 
-    displayWeather(dataWeNeed[0], dataWeNeed[1], dataWeNeed[2], dataWeNeed[3], dataWeNeed[4])
+    displayWeather(dataWeNeed[1], dataWeNeed[0], dataWeNeed[2], dataWeNeed[3], dataWeNeed[4]);
+
+    switchTemp(dataWeNeed[1])
   
     return dataWeNeed;
   } catch(err) {
     content.textContent = 'Incorrect City';
   }
 }
-
-getWeather('tampa')
 
 function siftData(obj) {
   let filteredObj = obj.filter(data => data[0] == 'temp_f' || data[0] == 'temp_c' || data[0] == 'feelslike_f' || data[0] == 'humidity' || data[0] == 'wind_mph');
@@ -51,15 +51,15 @@ function displayWeather(a,b,c,d,f) {
   div.appendChild(tempC);
 
   let feelsLike = document.createElement('div');
-  feelsLike.textContent = `Feels like ${c}`;
+  feelsLike.textContent = `Winds speed (mph): ${c}`;
   div.appendChild(feelsLike);
 
   let humidity = document.createElement('div');
-  humidity.textContent = `Feels like ${d}`;
+  humidity.textContent = `Humidity is: ${d}`;
   div.appendChild(humidity);
 
   let wind = document.createElement('div');
-  wind.textContent = `Feels like ${f}`;
+  wind.textContent = `Feels like (F): ${f}`;
   div.appendChild(wind);
 
   content.appendChild(header)
@@ -73,3 +73,18 @@ const input = document.querySelector('#input')
 button.addEventListener('click', () => {
   getWeather(input.value)
 })
+
+const img = document.querySelector('img');
+
+function switchTemp(temp) {
+  if(temp > 60) {
+    img.src = 'weather-sunny.svg'
+    content.style.backgroundColor = 'orange';
+  } else if(temp <= 59 && temp >= 40) {
+    img.src = 'sun-snowflake-variant.svg'
+    content.style.backgroundColor = 'yellow';
+  } else {
+    img.src = 'snowflake-alert.svg';
+    content.style.backgroundColor = 'lightblue';
+  }
+}

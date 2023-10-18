@@ -8,6 +8,14 @@ header {
   padding: 40px;
   -webkit-box-shadow: 5px 5px 15px 5px #000000; 
   box-shadow: 5px 5px 15px 5px #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+img {
+  height: 70px;
 }
 
 h1 {
@@ -29,7 +37,7 @@ input[type='submit'] {
 }
 
 .form {
-  margin-top: 80px;
+  margin-top: 70px;
   display: flex;
   justify-content: center;
   gap: 40px;
@@ -37,9 +45,9 @@ input[type='submit'] {
 
 #content {
   padding: 50px 40px;
-  margin-top: 100px;
+  margin-top: 80px;
   text-align: center;
-  background-color: rgb(141, 247, 127);
+  background-color: rgb(127, 247, 207);
   width: 300px;
   border-radius: 25px;
 }
